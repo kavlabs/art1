@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Artwork</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .hero-img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    .art-meta { color: #666; }
+    /* grid for multi-image pieces */
+    .hero-img-grid {
+      display: grid;
+      gap: 1rem;
+    }
+    @media (min-width: 992px) {
+      .hero-img-grid.two-up {
+        grid-template-columns: 1fr 1fr; /* side-by-side on desktop */
+      }
+    }
+    .hero-img-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="javascript:history.back()">← Back to Gallery</a>
+    </div>
+  </nav>
+
+  <main class="container my-5" id="art-root">
+    <!-- Populated by JS -->
+  </main>
+
+  <script>
+  // ====== Tiny “database” ======
+  // Add entries as you go. Use your existing codes/titles/descriptions/images.
+  // Examples below are pulled from your Sculpture / Textured pages.
+  const ART_DB = {
+  // ---------- SCULPTURE ART ----------
+  "AP-001": {
+    title: "FLORAL SYMPHONY",
+    img: "images/01.png",
+    size: `18" x 22"`,
+    category: "Sculpture Art",
+    desc: "Capturing moments with petals and posies. This charming bouquet of flowers are almost lifelike, resting over green foliage. The background wall is textured with distressed numericals in honey and white."
+  },
+  "AP-002": {
+    title: "FRENCH LAVENDER",
+    img: "images/02.png",
+    size: `18" x 22"`,
+    category: "Sculpture Art",
+    desc: "These perennial shrubs are not just beautiful but also possess powerful healing properties. The golden rays add a touch of shimmer over the fragrant sea of purple and lavender."
+  },
+  "AP-003": {
+    title: "EDEN GARDEN",
+    img: "images/03.png",
+    size: `30" x 24"`,
+    category: "Sculpture Art",
+    desc: "Where flowers bloom so does hope. Red, white and pink roses on a lush green foliage. Spring brings joy and positivity through this visual art garden."
+  },
+  "AP-004": {
+    title: "PURPLE IRIS",
+    img: "images/04.png",
+    size: `18" x 22"`,
+    category: "Sculpture Art",
+    desc: "Inspired by Irises of Vincent Van Gogh, this unique flower in shades of purple and violet with accents of white and green. These delicate petals are a mesmerising treat to the eyes."
+  },
+  "AP-005": {
+    title: "WHITE GRACE",
+    img: "images/05.png",
+    size: `17.5" x 17.5"`,
+    category: "Sculpture Art",
+    desc: "Soft petals and gentle colours come together in creepers of white magnolia blooming on sunkissed wood where nature climbs and stillness speaks."
+  },
+  "AP-006": {
+    title: "ETERNAL ROSE",
+    img: "images/06.png",
+    size: `18" x 26"`,
+    category: "Sculpture Art",
+    desc: "A symbol of celebration love unfolds over a wood inspired backdrop in soft salmon and white. Petals are created with sculpture paste in romantic hues. Deep fuchsia and pink take centre stage along with bright yellow buds and green leaves."
+  },
+  "AP-007": {
+    title: "HYDRANGEAS IN BLOOM",
+    img: "images/07.png",
+    size: `15.5" x 19.5"`,
+    category: "Sculpture Art",
+    desc: "This summery piece is compiled with purple and white flowers over a warm brick wall, a visual representation of Hydrangeas which symbolise royalty and grace. Made with sculpture paste on a canvas board."
+  },
+  "AP-008": {
+    title: "CRIMSON MUSE",
+    img: "images/08.png",
+    size: `13" x 13"`,
+    category: "Sculpture Art",
+    desc: "These flowers growing defiantly against the rigid walls symbolising quiet strength of these delicate beauties."
+  },
+  "AP-010": {
+    title: "PETALSCAPE",
+    img: "images/010.png",
+    size: `17" x 21"`,
+    category: "Sculpture Art",
+    desc: "As if spring paused for a portrait…hand sculpted florals frozen in a fleeting moment!!"
+  },
+  "AP-011": {
+    title: "MIDNIGHT PEONIES",
+    img: "images/011.png",
+    size: `18" x 24"`,
+    category: "Sculpture Art",
+    desc: "Bright peonies in delicate creepers with a moonlight backdrop shows life can bloom in the darkest of nights."
+  },
+  "AP-012": {
+    title: "SAKURA",
+    img: "images/012.png",
+    size: `18" x 22"`,
+    category: "Sculpture Art",
+    desc: "Set against the backdrop of snow clad peaks in Japan, these cherry blossoms need no introduction. The delicate pink flowers in all its daintiness evoke awe all over the world."
+  },
+  "AP-013": {
+    title: "QUIET LIGHT",
+    img: "images/013.png",
+    size: `18" x 22"`,
+    category: "Sculpture Art",
+    desc: "A shimmer of hope in the night sky. The moon rays reflect upon the delicate leaves on a dark autumn night."
+  },
+  "AP-014": {
+    title: "BEAMING BLOSSOMS",
+    img: "images/014.png",
+    size: `20" x 20"`,
+    category: "Sculpture Art",
+    desc: "These tiny vibrant flowering in earthen pots adorn the rustic entrance foyer. The distressed walls add an old world charm to this painting."
+  },
+  "AP-016": {
+    title: "WHISPERS OF SPRING",
+    img: "images/016.png",
+    size: `17" x 17"`,
+    category: "Sculpture Art",
+    desc: "Set against a softly muted impressionistic background of pastel tones,these white daffodils with yellow centres capture the fresh spring morning. Fallen blossoms add a natural touch to this 3D art piece."
+  },
+
+  // Vintage Love collection + variants
+  "AP-027": {
+    title: "VINTAGE LOVE",
+    img: "images/027.png",
+    size: `9.5" x 13.5"`,
+    category: "Sculpture Art",
+    desc: "Transported back to the victorian age through the artist imagination, this collage of three beautifully sculpted flowers speaks for itself."
+  },
+  "AP-027-ROSE": {
+    title: "VINTAGE LOVE ( Rose )",
+    img: "images/027.png",
+    size: `9.5" x 13.5"`,
+    category: "Sculpture Art",
+    desc: "Transported back to the victorian age through the artist imagination, this collage of three beautifully sculpted flowers speaks for itself."
+  },
+  "AP-027-PEONY": {
+    title: "VINTAGE LOVE ( Peony )",
+    img: "images/028.png",
+    size: `9.5" x 13.5"`,
+    category: "Sculpture Art",
+    desc: "Transported back to the victorian age through the artist imagination, this collage of three beautifully sculpted flowers speaks for itself."
+  },
+  "AP-027-ORCHID": {
+    title: "VINTAGE LOVE ( Orchid )",
+    img: "images/029.png",
+    size: `9.5" x 13.5"`,
+    category: "Sculpture Art",
+    desc: "Transported back to the victorian age through the artist imagination, this collage of three beautifully sculpted flowers speaks for itself."
+  },
+
+  // Gold Edition collection + tiles
+  "AP-028": {
+    title: "GOLD EDITION",
+    img: "images/ge1.png",
+    size: `19.5" x 19.5"`,
+    category: "Sculpture Art",
+    desc: "A four-piece display of opulence—flower bow, burnished leaves, floral glow, and golden wreath."
+  },
+  "AP-028-1": {
+    title: "GOLD EDITION (1)",
+    img: "images/030.png",
+    size: `19.5" x 19.5"`,
+    category: "Sculpture Art",
+    desc: "Flower bow, burnished leaves, floral glow, golden wreath- this 4 piece artwork is a stunning display of opulence in sculpture art."
+  },
+  "AP-028-2": {
+    title: "GOLD EDITION (2)",
+    img: "images/031.png",
+    size: `19.5" x 19.5"`,
+    category: "Sculpture Art",
+    desc: "Flower bow, burnished leaves, floral glow, golden wreath- this 4 piece artwork is a stunning display of opulence in sculpture art."
+  },
+  "AP-028-3": {
+    title: "GOLD EDITION (3)",
+    img: "images/032.png",
+    size: `19.5" x 19.5"`,
+    category: "Sculpture Art",
+    desc: "Flower bow, burnished leaves, floral glow, golden wreath- this 4 piece artwork is a stunning display of opulence in sculpture art."
+  },
+  "AP-028-4": {
+    title: "GOLD EDITION (4)",
+    img: "images/033.png",
+    size: `19.5" x 19.5"`,
+    category: "Sculpture Art",
+    desc: "Flower bow, burnished leaves, floral glow, golden wreath- this 4 piece artwork is a stunning display of opulence in sculpture art."
+  },
+
+  "AP-029": {
+    title: "ROSES IN REVERIE",
+    img: "images/rir.png",
+    size: `30" x 24"`,
+    category: "Sculpture Art",
+    desc: "Here, the roses do not simply bloom- they linger in thought between my dream and reality. Each petal bends towards the light as though listening to a secret whisper! This sculpture painting deliver serenity with the sunshine seeping through lush green foliage and roses in scarlet and yellow hues."
+  },
+
+  // ---------- TEXTURED ART ----------
+  "AP-009": {
+    title: "WINDOW TO JOY",
+    img: "images/09.png",
+    size: `21.5" x 21.5"`,
+    category: "Textured Art",
+    desc: "Behind the cut-overlooking the colourful floral field from the calmness of your home.curtains made with fabric and texture paste creating fall and pleats, the rustic rope add to the beauty of this unique piece."
+  },
+  "AP-015": {
+    title: "GOLDEN GLOW",
+    img: "images/015.png",
+    size: `20" x 20"`,
+    category: "Textured Art",
+    desc: "Structured in a hypnotic circular formation created in natural symmetry in shimmering gradients, this textured art is symbolic to the sun."
+  },
+  "AP-017": {
+    title: "TEXTURED ECHOES",
+    img: "images/017.png",
+    size: `17" x 21"`,
+    category: "Textured Art",
+    desc: "Rich copper hues exude luxury and positive energy. This abstract artwork is tactile and visually engaging that plays with texture, pattern and repetition."
+  },
+  "AP-018": {
+    title: "CORE OF GOLD",
+    img: "images/018.png",
+    size: `13" x 15"`,
+    category: "Textured Art",
+    desc: "A powerful core breaking through, scattered fragments of gold symbolises radiance and strength."
+  },
+  "AP-019": {
+    title: "LAYERS OF EMOTION",
+    img: "images/019.png",
+    size: `12" x 18"`,
+    category: "Textured Art",
+    desc: "Every colour represents an emotion that builds up on each other and is shaped with time- textured art told in colour."
+  },
+  "AP-020": {
+    title: "SHADES OF STILLNESS",
+    img: "images/020.png",
+    size: `17" x 21"`,
+    category: "Textured Art",
+    desc: "A serene blend of muted earthy tones layered to flow through the stillness of time. This painting evokes quiet meditation and connect oneself with the present."
+  },
+  "AP-021": {
+    title: "SEA & SAND",
+    img: "images/021.png",
+    size: `13" x 13"`,
+    category: "Textured Art",
+    desc: "Awed by the beauty of the Mediterranean. This painting is a picture of calmness and serenity. Made with sculpture paste on a canvas board."
+  },
+  "AP-022": {
+    title: "WAVES AND WHITE",
+    img: "images/022.png",
+    size: `17" x 21"`,
+    category: "Textured Art",
+    desc: "White texture paste create foamy waves, blue skies above reflect the ocean, a raw display of the magnificent water body."
+  },
+  "AP-023": {
+    title: "TIDES OF TRANQUIL",
+    // imgs: ["images/tot1.png", "images/tot2.png"],  // diptych
+    img: "images/023.png",
+    size: `18" x 24" (two pieces)`,
+    category: "Textured Art",
+    desc: "Two canvases, one story. Where colours flow and boundaries fade. Where the sea kisses the shore. Soft foam envelope delicate starfish on the sandy grains."
+  },
+  "AP-024": {
+    title: "SEA AND SHIMMER",
+    img: "images/024.png",
+    size: `20" x 20"`,
+    category: "Textured Art",
+    desc: "Oceanic waves inspired, white contemporary threads on gleaming blue base represents the sea. A visual treat that soothes the eyes of the beholder."
+  },
+  "AP-025": {
+    title: "FROZEN FIRE",
+    img: "images/025.png",
+    size: `24" x 36"`,
+    category: "Textured Art",
+    desc: "This modern and minimalist art - bold and erratic, shows fire and ice in one frame making it a visually stunning piece."
+  },
+  "AP-026": {
+    title: "MOONLIGHT AND SHADOWS",
+    img: "images/026.png",
+    size: `20"`,
+    category: "Textured Art",
+    desc: "This circular composition captures the serene rhythm of nature under moonlight where silence speaks and shadows move like whisper."
+  }
+};
+
+
+  // ====== Render logic ======
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  const data = ART_DB[id];
+
+  const root = document.getElementById('art-root');
+
+  if (!data) {
+    document.title = "Artwork Not Found";
+    root.innerHTML = `
+      <div class="text-center py-5">
+        <h1 class="display-6">Artwork not found</h1>
+        <p class="text-muted">The ID "<code>${id ?? ""}</code>" doesn't exist.</p>
+        <a class="btn btn-outline-primary mt-3" href="index.html">Back to Home</a>
+      </div>`;
+  } else {
+    document.title = data.title + " – " + (data.category || "Art by Nasmeen");
+    // Build a list of images from either `imgs` (array) or single `img`
+    const images = Array.isArray(data.imgs) && data.imgs.length ? data.imgs
+                   : (data.img ? [data.img] : []);
+
+    // Choose how to render the media area
+    let mediaHtml = '';
+    if (images.length === 0) {
+      mediaHtml = `<div class="text-muted">No image available.</div>`;
+    } else if (images.length === 1) {
+      // single image (same as before)
+      mediaHtml = `<img class="hero-img" src="${images[0]}" alt="${data.title}">`;
+    } else {
+      // multiple images — show as a neat responsive grid (no JS required)
+      const twoUp = images.length === 2 ? ' two-up' : '';
+      mediaHtml = `
+        <div class="hero-img-grid${twoUp}">
+          ${images.map((src, i) => `<img src="${src}" alt="${data.title} ${i+1}">`).join('')}
+        </div>`;
+    }
+
+    // Inject the full layout
+    root.innerHTML = `
+      <div class="row g-4 align-items-center text-center">
+        <div class="col-12">
+          <h1 class="mb-3">${data.title}</h1>
+          ${data.size ? `<p class="art-meta mb-2"><strong>Size:</strong> ${data.size}</p>` : ""}
+          ${data.category ? `<p class="art-meta mb-4"><strong>Category:</strong> ${data.category}</p>` : ""}
+          <p class="mx-auto" style="max-width: 720px;">${data.desc || ""}</p>
+          <div class="mt-4 d-flex justify-content-center gap-2">
+          </div>
+        </div>
+        <div class="col-12">
+          ${mediaHtml}
+        </div>
+      </div>`;
+  //   root.innerHTML = `
+  //     <div class="row g-4 align-items-start">
+  //       <div class="col-12 col-lg-6">
+  //         ${mediaHtml}
+  //       </div>
+  //       <div class="col-12 col-lg-6">
+  //         <h1 class="mb-3">${data.title}</h1>
+  //         ${data.size ? `<p class="art-meta mb-2"><strong>Size:</strong> ${data.size}</p>` : ""}
+  //         ${data.category ? `<p class="art-meta mb-4"><strong>Category:</strong> ${data.category}</p>` : ""}
+  //         <p>${data.desc || ""}</p>
+  //         <div class="mt-4 d-flex gap-2">
+  //           <a class="btn btn-primary" href="javascript:history.back()">Back</a>
+  //           <a class="btn btn-outline-secondary" href="index.html">Home</a>
+  //         </div>
+  //       </div>
+  //     </div>`;
+  }
+  </script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/font-awesome.css">    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/app.min.css">  
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+    <title>Textured Art</title>
+<script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create','UA-99999731-1','auto');ga('send','pageview');</script>	
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<style>
+    .image-text-container {
+      display: flex; /* Makes the container a flexbox */
+      align-items: center; /* Vertically centers the items */
+      gap: 2px; /* Adds space between the image and the text */
+    }
+    .image-text-container img {
+      max-width: 60px; /* Adjust the image size */
+      height: auto;
+    }
+    /* transparent square canvas around each slide */
+    .canvas-500{
+      width:500px; height:500px;
+      display:grid; place-items:center;
+      background: transparent;      /* canvas is transparent */
+      overflow:hidden;
+      margin:0 auto;                 /* center the canvas */
+    }
+
+    /* make the slide itself transparent too (no white fill) */
+    #imageSlideshow,
+    #imageSlideshow .carousel-inner,
+    #imageSlideshow .carousel-item{
+      background: transparent !important;
+    }
+
+    /* image scales to fit inside the 500x500 without distortion */
+    #imageSlideshow .canvas-500 img{
+      max-width:100%;
+      max-height:100%;
+      width:auto; height:auto;
+      object-fit: contain;           /* no cropping */
+      background: transparent;       /* just in case theme sets img bg */
+    }
+    figure img {
+      background: transparent !important;
+    }
+    figure {
+      background: transparent !important;
+      box-shadow: none;   /* optional: remove shadow if it “fills” behind */
+    }
+    body, .container, .program_wrap, figure {
+      background: transparent;
+    }
+    /* circular, transparent canvas */
+    .circle-canvas {
+      /* pick a size you like */
+      width: 460px;                 /* or clamp(160px, 40vw, 280px) for responsive */
+      aspect-ratio: 1;              /* perfect square that scales */
+      border-radius: 50%;           /* makes it a circle */
+      overflow: hidden;             /* hide anything outside the circle */
+      background: transparent;      /* keep it transparent */
+      display: grid;                /* easy centering */
+      place-items: center;
+      margin: 0 auto;               /* center the circle in its column */
+      box-shadow: none !important;  /* kill theme shadows if any */
+      border: none;                 /* optional */
+    }
+
+    /* image sits fully inside the circle, no distortion */
+    .circle-canvas .circle-content {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;          /* show the whole PNG inside the circle */
+      background: transparent;      /* ensure no fill behind */
+      display: block;
+    }
+
+    /* in case your theme set figure/img backgrounds */
+    figure.circle-canvas { background: transparent !important; }
+    .circle-canvas img { background: transparent !important; }
+    .clickable-title { cursor: pointer; }
+    .clickable-title:hover { text-decoration: underline; }
+    figure[data-art-id] { cursor: pointer; }
+</style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="ct-header">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg">
+                    <div class="image-text-container">
+                      <a class="navbar-brand" href="index.html"><img src="images/logo3.png" alt="Art by Nasmeen"></a>
+                      <a class="navbar-brand" href="index.html"><p><h2>Art by Nasmeen</h2></p></a>
+                    </div>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="nav justify-content-end">
+                            <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                            <li class="nav-item"><a href="aboutus.html" class="nav-link">About the Artist / Contact Us</a></li>
+                            <li class="nav-item"><a href="#" class="nav-link">Gallery  </a>
+                                <ul class="sub-menu">
+                                        <li><a href="sculpture.html">sculpture art</a></li>
+                                        <li><a href="textured.html">textured art</a></li>
+                                </ul>
+                                
+                              </li>
+                            <li class="nav-item"><a href="eea.html" class="nav-link">Exhibitions, Events and Activities</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <div class="event-program section-space">
+            <div class="container">
+                <div class="row">
+                    <div class="col col-sm-10 offset-sm-1 wow fadeInUp" data-wow-delay="0.0s">
+                        <h2 class=" display-2 text-center"> Textured Art
+                        </h2>
+                        <div class="vc_empty_space  xtd-spacer--xl"></div>
+
+                        <div class="program_wrap">
+                            <div class="row">
+                                <div class="col col-sm-5  wow fadeInUp" data-wow-delay="0.2s">
+                                    <figure data-art-id="AP-009">
+                                        <img src="images/wtj.png" alt="">
+                                    </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>WINDOW TO JOY </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>Behind the cut-overlooking the colourful floral field from the calmness of your home.curtains made with fabric and texture paste creating fall and pleats, the rustic rope add to the beauty of this unique piece.</p>
+                                                    <p>AP-009 | Size - 21.5" x 21.5"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-5 order-2 wow fadeInUp" data-wow-delay="0.3s">
+                                    <figure data-art-id="AP-015">
+                                    <img src="images/gg.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>GOLDEN GLOW </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>Structured in a hypnotic circular formation created in natural symmetry in shimmering gradients, this textured art is symbolic to the sun. </p>
+                                                    <p>AP-015 | Size - 20" x 20"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col col-sm-5  wow fadeInUp" data-wow-delay="0.2s">
+                                    <figure data-art-id="AP-017">
+                                    <img src="images/te.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>TEXTURED ECHOES </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>Rich copper hues exude luxury and positive energy. This abstract artwork is tactile and visually engaging that plays with texture, pattern and repetition.</p>
+                                                    <p>AP-017 | Size - 17" x 21"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-5 order-2 wow fadeInUp" data-wow-delay="0.3s">
+                                    <figure data-art-id="AP-018">
+                                    <img src="images/cog.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>CORE OF GOLD </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>A powerful core breaking through, scattered fragments of gold symbolises radiance and strength.  </p>
+                                                    <p>AP-018 | Size - 13" x 15"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col-sm-5  wow fadeInUp" data-wow-delay="0.2s">
+                                    <figure  data-art-id="AP-019">
+                                    <img src="images/loe.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>LAYERS OF EMOTION </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>Every colour represents an emotion that builds up on each other and is shaped with time- textured art told in colour. </p>
+                                                    <p>AP-019 | Size - 12" x 18"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-5 order-2 wow fadeInUp" data-wow-delay="0.3s">
+                                    <figure  data-art-id="AP-020">
+                                    <img src="images/sos.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>SHADES OF STILLNESS  </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>A serene blend of muted earthy tones layered to flow through the stillness of time. This painting evokes quiet meditation and connect oneself with the present.</p>
+                                                    <p>AP-020 | Size - 17" x 21"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col-sm-5  wow fadeInUp" data-wow-delay="0.2s">
+                                    <figure  data-art-id="AP-021">
+                                    <img src="images/sas.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>SEA & SAND </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>Awed by the beauty of the Mediterranean. This painting is a picture of calmness and serenity.  </p>
+                                                    <p>Made with sculpture paste on a canvas board. </p>
+                                                    <p>AP-021 | Size - 13" x 13"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-5 order-2 wow fadeInUp" data-wow-delay="0.3s">
+                                    <figure  data-art-id="AP-022">
+                                    <img src="images/waw.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>WAVES AND WHITE </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>White texture paste create foamy waves, blue skies above reflect the ocean, a raw display of the magnificent water body. </p>
+                                                    <p>AP-022 | Size - 17" x 21"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col-sm-5  wow fadeInUp" data-wow-delay="0.2s">
+                                    <!-- <figure>
+                                    <img src="images/tot1.png" alt="">
+                                </figure>
+                                <figure>
+                                    <img src="images/tot2.png" alt="">
+                                </figure> -->
+                                <div class="row justify-content-center">
+
+                                <div class="col-6 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                  <!-- <div class="exp-item"> -->
+                                    <figure  data-art-id="AP-023">
+                                      <img src="images/tot1.png" alt="">
+                                    </figure>
+                                  <!-- </div> -->
+                                </div>
+
+                                <div class="col-6 col-sm-6 wow fadeInUp" data-wow-delay="0.2s">
+                                  <!-- <div class="exp-item"> -->
+                                    <figure  data-art-id="AP-023">
+                                      <img src="images/tot2.png" alt="">
+                                    </figure>
+                                  <!-- </div> -->
+                                </div>
+                                </div>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3 data-art-id="AP-023" class="clickable-title">TIDES OF TRANQUIL </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>Two canvases, one story. Where colours flow and boundaries fade. Where the sea kisses the shore. Soft foam envelope delicate starfish on the sandy grains.</p>
+                                                    <p>AP-023 | Size - 18" x 24" (two pieces)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-5 order-2 wow fadeInUp" data-wow-delay="0.3s">
+                                    <figure  data-art-id="AP-024">
+                                    <img src="images/sas2.png" alt="">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>SEA AND SHIMMER </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>Oceanic waves inspired, white contemporary threads on gleaming blue base represents the sea. A visual treat that soothes the eyes of the beholder. </p>
+                                                    <p>AP-024 | Size - 20" x 20"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col col-sm-5  wow fadeInUp" data-wow-delay="0.2s">
+                                    <figure  data-art-id="AP-025">
+                                        <img src="images/ff.png" alt="">
+                                    </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>FROZEN FIRE </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>This modern and minimalist art - bold and erratic, shows fire and ice in one frame making it a visually stunning piece.  </p>
+                                                    <p>AP-025 | Size - 24" x 36"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col col-sm-5 order-2 wow fadeInUp" data-wow-delay="0.3s">
+                                <figure class="circle-canvas" data-art-id="AP-026">
+                                  <img src="images/mas.png" alt="Mas" class="circle-content">
+                                </figure>
+
+                                </div>
+                                <div class="col col-sm-7 wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="program_cont">
+                                        <div class="wcs-class__meta">
+                                            <div class="wcs-class__inner-flex">
+                                                <h3>MOONLIGHT AND SHADOWS </h3>
+                                                <div class="wcs-class__excerpt">
+                                                    <p>This circular composition captures the serene rhythm of nature under moonlight where silence speaks and shadows move like whisper. </p>
+                                                    <p>AP-026 | Size - 20"</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	<style>
+    /* Floating Button Style */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      /*background-color: #25D366;*/
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      text-decoration: none;
+    }
+
+    .whatsapp-float:hover {
+      background-color: #20b957;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    }
+
+    .whatsapp-float img {
+      width: 60px;
+      height: 60px;
+    }
+    .footer-navigation { 
+      margin: 12px 0 0 !important;
+      padding-bottom: 0 !important;
+      border-bottom: none !important;
+    }
+    .footer-navigation ul { 
+      margin: 0 !important;
+      padding: 0 !important;
+      list-style: none;
+    }
+    .footer-navigation li { 
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    .section-space:last-of-type { padding-bottom: 0 !important; }
+  </style>
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="footer-navigation">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="aboutus.html">About the Artist / Contact Us</a></li>
+                        <li><a href="eea.html">Exhibitions, Events and Activities</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<a href="https://www.instagram.com/art_by_nasmeen" class="whatsapp-float" target="_blank" aria-label="Instagram">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg" alt="">
+</a>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/jquery.magnific-popup.js"></script>
+        <script src="js/isotope.pkgd.min.js"></script>
+        <script src="js/wow.js"></script>
+        <script src="js/app.min.js"></script> 
+        <script>
+            jQuery(document).ready(function() {
+                $('.grid').isotope({
+                    itemSelector: '.grid-item',
+                    masonry: {
+                        columnWidth: 0
+                    }
+                });
+
+                $('.popup-gallery').magnificPopup({
+                    delegate: 'a',
+                    type: 'image',
+                    tLoading: 'Loading image #%curr%...',
+                    mainClass: 'mfp-img-mobile',
+                    gallery: {
+                        enabled: true,
+                        navigateByImgClick: true,
+                        preload: [0, 1] // Will preload 0 - before current, and 1 after the current image
+                    }
+
+                });
+
+
+            });
+
+        </script>
+
+        <script>
+            var wow = new WOW({
+                boxClass: 'wow', // animated element css class (default is wow)
+                animateClass: 'animated', // animation css class (default is animated)
+                offset: 0, // distance to the element when triggering the animation (default is 0)
+                mobile: true, // trigger animations on mobile devices (default is true)
+                live: true, // act on asynchronously loaded content (default is true)
+                callback: function(box) {
+                    // the callback is fired every time an animation is started
+                    // the argument that is passed in is the DOM node being animated
+                },
+                scrollContainer: null // optional scroll container selector, otherwise use window
+            });
+            wow.init();
+
+        </script>
+        <script>
+        (function () {
+          // For every figure that already has a data-art-id...
+          document.querySelectorAll('figure[data-art-id]').forEach(fig => {
+            const id = fig.dataset.artId;
+            // Find its column
+            const imgCol = fig.closest('[class*="col-"]');
+            if (!imgCol) return;
+
+            // Try the next column first
+            let textCol = imgCol.nextElementSibling;
+            // If markup varies, also check the previous column
+            if (!textCol || !/\bcol-/.test(textCol.className)) {
+              textCol = imgCol.previousElementSibling;
+            }
+            if (!textCol) return;
+
+            // Find the heading inside the text column and tag it
+            const h3 = textCol.querySelector('h3');
+            if (h3) {
+              h3.dataset.artId = id;
+              h3.classList.add('clickable-title');
+            }
+          });
+
+          // One click handler for both figure & (now) heading
+          document.addEventListener('click', function (e) {
+            const target = e.target.closest('figure[data-art-id], h3[data-art-id]');
+            if (!target) return;
+            const id = target.dataset.artId;
+            if (id) {
+              window.location.href = 'art.html?id=' + encodeURIComponent(id);
+            }
+          });
+        })();
+        </script>
+
+</body>
+
+</html>

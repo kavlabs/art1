@@ -1,0 +1,50 @@
+/* === Art by Nasmeen – global bundle (app.min.css) === */
+
+/* 1) Navbar brand */
+.navbar-brand.d-flex { gap: .5rem; }
+.brand-logo { max-width: 40px; height: auto; }
+.brand-text { font-size: 1.25rem; font-weight: 700; }
+@media (max-width: 576px){
+  .brand-logo { max-width: 32px; }
+  .brand-text { font-size: 1.05rem; }
+}
+
+/* 2) Hero improvements (index) */
+.hero-section { padding: 64px 16px; position: relative; }
+.hero-section::before { opacity: .95 !important; }          /* show background image ~95% */
+.hero-section::after { background: rgba(0,0,0,.15) !important; } /* subtle dark overlay */
+.hero-section p {
+  font-size: clamp(1rem, 2.8vw, 1.25rem);
+  line-height: 1.65;
+  margin: 0 auto 1rem;
+  max-width: 800px;
+  text-shadow: none;
+}
+
+/* 3) Galleries – center without distortion */
+.exp-item figure{
+  display:flex; justify-content:center; align-items:center;
+  overflow:hidden; margin:0;
+  background: transparent;
+}
+.exp-item figure img{
+  max-width:100%; max-height:100%;
+  width:auto; height:auto; display:block;
+  object-fit: contain; background: transparent;
+}
+/* smaller slots on phones */
+@media (max-width: 576px){
+  .category-row .exp-item figure { height: 180px !important; }
+}
+
+/* 4) Floating social button (avoid overflow) */
+.whatsapp-float { width: 48px; height: 48px; bottom: 16px; right: 16px; }
+.whatsapp-float img { width: 28px; height: 28px; }
+@media (max-width: 576px){
+  .whatsapp-float { width: 44px; height: 44px; bottom: 12px; right: 12px; }
+  .whatsapp-float img { width: 24px; height: 24px; }
+}
+
+/* 5) Clickable headings UX */
+.clickable-title { cursor: pointer; }
+.clickable-title:hover { text-decoration: underline; }

@@ -1,0 +1,40 @@
+{
+  "artworks": [
+    {
+      "slug": "floral-symphony",
+      "title": "FLORAL SYMPHONY",
+      "code": "AP-001",
+      "size": "18\" x 22\"",
+      "blurb": "Capturing moments with petals and posies. This charming bouquet of flowers are almost lifelike, resting over green foliage. The background wall is textured with distressed numericals in honey and white.",
+      "images": [
+        "images/floral-symphony/1.jpg",
+        "images/floral-symphony/2.jpg",
+        "images/floral-symphony/3.jpg"
+      ]
+    },
+    {
+      "slug": "french-lavender",
+      "title": "FRENCH LAVENDER",
+      "code": "AP-002",
+      "size": "18\" x 22\"",
+      "blurb": "These perennial shrubs are not just beautiful but also possess powerful healing properties. The golden rays add a touch of shimmer over the fragrant sea of purple and lavender.",
+      "images": [
+        "images/french-lavender/1.jpg",
+        "images/french-lavender/2.jpg"
+      ]
+    },
+    {
+      "slug": "eden-garden",
+      "title": "EDEN GARDEN",
+      "code": "AP-003",
+      "size": "30\" x 24\"",
+      "blurb": "Where flowers bloom so does hope. Red, white and pink roses on a lush green foliage. Spring brings joy and positivity through this visual art garden.",
+      "images": [
+        "images/eden-garden/1.jpg",
+        "images/eden-garden/2.jpg",
+        "images/eden-garden/3.jpg",
+        "images/eden-garden/4.jpg"
+      ]
+    }
+  ]
+}
