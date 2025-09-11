@@ -125,7 +125,7 @@
             </div>
         </header>   
         <!-- <h2 class="special-title display-2 text-center">Art by Nasmeen</h2> -->
-        <h2 class="display-2 text-center">My Journey</h2>
+        <!-- <h2 class="display-2 text-center">My Journey</h2>
         <div class="hero-section section-space">
             <div class="container text-center">
                 <p>My love for art, poetry, and all things beautiful has been with me since childhood, though it was somehow lost along the journey of life. While rummaging through my old belongings, I stumbled upon my dust-covered paintings—a discovery that reignited my desire to create again. But this time, instead of brushes and oil colours, I chose to explore a new world-sculpture painting and texture art.</p>
@@ -139,7 +139,8 @@
                     <a href="#id-1"><i class="fa fa-angle-double-down fa fa-lg"></i></a>
                 </div>
             </div>
-        </div>
+        </div> -->
+        
         <div class="explore  section-space">
             <div class="container">
                 <div class="row justify-content-center category-row">
@@ -229,8 +230,42 @@
                 </div>
             </div>
         </div>
+        <h2 class="display-2 text-center">My Journey</h2>
+            <div class="hero-section section-space">
+              <div class="container text-center">
+
+                <!-- Preview text -->
+                <div id="journey-preview">
+                  <p>
+                    My love for art, poetry, and all things beautiful has been with me since childhood, 
+                    though it was somehow lost along the journey of life. While rummaging through my old belongings, 
+                    I stumbled upon my dust-covered paintings—a discovery that reignited my desire to create again. 
+                    But this time, instead of brushes and oil colours, I chose to explore a new world—sculpture painting 
+                    and texture art.
+                  </p>
+                </div>
+
+                <!-- Full text (hidden initially) -->
+                <div id="journey-full" style="display:none;">
+                  <p>February 2024 marked a turning point in my life. It was then that I first picked up a palette knife, and since that day, the journey has been nothing short of amazing. I relied on self-learning tutorials, often struggling for hours, but the rewards were profound. Within just eight months, I had created more than 15 artworks. Painting was no longer a hobby—it became a passion, an addiction. It brought me peace, grounding, and joy. For me, it was a form of meditation— moments of pure focus and dedication, often stretching late into the night. The inspiration behind these paintings are the beautiful elements of nature, exotic landscape and flora and the spectrum of human emotion experienced through my extensive travels world over. </p>
+
+                <p>The fire of learn, to do something new, to grow as a person is deeply ingrained in my being. Although I hold a diploma in Fashion Design and, a few years ago, completed another in Montessori Teaching—I never pursued either professionally. Eventually, I found my true calling in my first love-Painting. With no formal art training, I enrolled in a 3-day enriching workshop in Abu Dhabi in November 2024 with Evgenia Ermilova, the Russian master of sculpture painting, to fine-tune my skills in this unique art form.</p>
+
+                <p>In just 20 months, I’ve created over 40 artworks- and that’s how “Art by Nasmeen” came into being- a delightful journey that continues to unfold with every stroke, every petal, every creation.</p>
+                </div>
+
+                <!-- Toggle button styled as arrow -->
+                <div class="bt_arrow wow bounceInUp mt-4" data-wow-delay="0.1s">
+                  <a href="javascript:void(0)" id="toggle-journey">
+                    <i class="fa fa-angle-double-down fa fa-lg"></i>
+                  </a>
+                </div>
+                <br>
+
+              </div>
+            </div>
     </div>
-    <h1>&nbsp</h1>
+    <!-- <h1>&nbsp</h1> -->
     <!--Wrapper-->
  <style>
     /* Floating Button Style */
@@ -299,6 +334,21 @@
     <script src="js/wow.js"></script>
     <script src="js/owl.carousel.js"></script>
     <script src="js/app.min.js"></script> 
+
+    <script>
+      const btn = document.getElementById('toggle-journey');
+      const full = document.getElementById('journey-full');
+      btn.addEventListener('click', () => {
+        if (full.style.display === 'none') {
+          full.style.display = 'block';
+          btn.innerHTML = '<i class="fa fa-angle-double-up fa fa-lg"></i>';  // switch to up arrow
+        } else {
+          full.style.display = 'none';
+          btn.innerHTML = '<i class="fa fa-angle-double-down fa fa-lg"></i>'; // back to down arrow
+          window.scrollTo({ top: document.getElementById('journey-preview').offsetTop, behavior: 'smooth' });
+        }
+      });
+    </script>
 
     <script>
         $('.testimonial_cl').owlCarousel({
