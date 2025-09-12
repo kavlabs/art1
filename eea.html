@@ -45,6 +45,7 @@
       display: block;
       border-radius: 10px;
     }
+    .masonry.two-cols { column-count: 3; }
 
     /* Responsive columns */
     @media (max-width: 992px) { .masonry { column-count: 2; } }
@@ -141,9 +142,15 @@
                 Dubai Exhibition - September 2025
               </h2>
 
-              <div class="masonry">
+              <div class="masonry two-cols">
                 <a href="images/sep2025.jpeg" target="_blank">
-                  <img src="images/sep2025.jpeg" alt="Dubai Workshop">
+                  <img src="images/sep2025.jpeg" alt="Dubai Workshop" loading="lazy">
+                </a>
+                <a href="images/sep2025.jpeg" target="_blank">
+                  <img loading="lazy">
+                </a>
+                <a href="images/sep2025.jpeg" target="_blank">
+                  <img src="images/sep20252.jpeg" alt="Dubai Workshop" loading="lazy">
                 </a>
                 <!-- Add more images for this gallery by duplicating <a>...</a> -->
               </div>
