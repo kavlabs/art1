@@ -25,6 +25,22 @@
   gtag('config', 'G-CJP9YV0Q7L');
 </script>
 <style>
+    .bt_arrow2 a {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;   /* give it horizontal space */
+      border-radius: 25px;       /* rounded pill shape */
+      background: #000;          /* match your theme */
+      color: #fff;
+      font-weight: 600;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .bt_arrow2 a:hover {
+      background: #444;          /* hover effect */
+    }
     .image-text-container {
       display: flex; /* Makes the container a flexbox */
       align-items: center; /* Vertically centers the items */
@@ -91,15 +107,63 @@
       display: block;
       padding: 10px;
     }
+    /* ===== MOBILE-ONLY NAVBAR (<= 876px) ===== */
+    @media (max-width: 876px){
+    /* Make the scaled navbar create the top stacking context on ALL viewports */
+    .navbar-scale-wrapper {
+      position: relative;     /* <-- required so z-index works */
+      z-index: 10000;         /* sits above page content */
+      transform-origin: top center;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 50px;
+    }
+
+    /* Ensure header/nav also live in that high layer */
+    .ct-header,
+    .ct-header .navbar {
+      position: relative;
+      z-index: 10001;
+    }
+
+    /* Your custom submenu (non-BS .dropdown-menu) should sit above nav */
+    .navbar .sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      display: none;
+      z-index: 10002;         /* above header/nav */
+    }
+
+    /* show submenu on hover (desktop) */
+    .navbar .nav-item:hover > .sub-menu { display: block; }
+
+    /* Guard against ancestor clipping */
+    .wrapper, .container, header, .ct-header { overflow: visible !important; }
+
+    /* If any gallery figures were given z-index by other CSS, neutralize it */
+    .exp-item, .exp-item figure, .exp-item figure img { position: relative; z-index: auto; }
+
+    /* Variants — scale everything inside */
+    .navbar-scale-wrapper.scale-05 { transform: scale(calc(1/0.5)); }
+    .navbar-scale-wrapper.scale-07 { transform: scale(calc(1/0.7)); }
+    .navbar-scale-wrapper.scale-09 { transform: scale(calc(1/0.9)); }
+    .navbar-scale-wrapper.scale-10 { transform: scale(calc(1)); }
+    }
 
 </style>
 </head>
 
-<body>
+<body class="scale-05">
     <div class="wrapper">
+        <div class="navbar-scale-wrapper scale-05">
          <header class="ct-header">
             <div class="container">
-                <nav class="navbar navbar-expand-lg">
+                <nav class="navbar navbar-expand-lg scale-05">
                     <div class="image-text-container">
                       <a class="navbar-brand" href="index.html"><img src="images/logo3.png" alt="Art by Nasmeen"></a>
                       <a class="navbar-brand" href="index.html"><p><h2>Art by Nasmeen</h2></p></a>
@@ -110,7 +174,6 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="nav justify-content-end">
                             <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                            <li class="nav-item"><a href="aboutus.html" class="nav-link">About the Artist / Contact Us</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Gallery  </a>
                                 <ul class="sub-menu">
                                         <li><a href="sculpture.html">sculpture art</a></li>
@@ -119,11 +182,13 @@
                                 
                               </li>
                             <li class="nav-item"><a href="eea.html" class="nav-link">Exhibitions, Events and Activities</a></li>
+                            <li class="nav-item"><a href="aboutus.html" class="nav-link">About the Artist / Contact Us</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
-        </header>   
+        </header>
+        </div>
         <!-- <h2 class="special-title display-2 text-center">Art by Nasmeen</h2> -->
         <!-- <h2 class="display-2 text-center">My Journey</h2>
         <div class="hero-section section-space">
@@ -144,7 +209,7 @@
         <div class="explore  section-space">
             <div class="container">
                 <div class="row justify-content-center category-row">
-                <h2 class="display-2 text-center  wow fadeInUp"> Sculpture Art </h2>
+                <h1 class="display-2 text-center  wow fadeInUp textured-heading"> Sculpture Art </h1>
                 <div class="vc_empty_space  xtd-spacer--xl"></div>
                 <div class="row justify-content-center">
                     <div class="col-6 col-sm-4  wow fadeInUp" data-wow-delay="0.2s">
@@ -189,14 +254,14 @@
         <div class="explore  section-space">
             <div class="container">
                 <div class="row justify-content-center category-row">
-                <h2 class="display-2 text-center  wow fadeInUp"> Textured Art </h2>
+                <h1 class="display-2 text-center  wow fadeInUp textured-heading"> Textured Art </h1>
                 <div class="vc_empty_space  xtd-spacer--xl"></div>
                 <div class="row justify-content-center">
                     <div class="col-6 col-sm-4  wow fadeInUp" data-wow-delay="0.2s">
                         <div class="exp-item">
                             <figure> <img src="images/sas.png" alt=""></figure>
                             <div class="overlay_itm d-flex align-items-center">
-                                    <h4>SEA & SAND 
+                                    <h4>SEA AND SAND 
                                     </h4>
                             </div>
 
@@ -230,7 +295,7 @@
                 </div>
             </div>
         </div>
-        <h2 class="display-2 text-center">My Journey</h2>
+        <h2 class="display-2 text-center textured-heading">My Journey</h2>
             <div class="hero-section section-space">
               <div class="container text-center">
 
@@ -255,10 +320,8 @@
                 </div>
 
                 <!-- Toggle button styled as arrow -->
-                <div class="bt_arrow wow bounceInUp mt-4" data-wow-delay="0.1s">
-                  <a href="javascript:void(0)" id="toggle-journey">
-                    <i class="fa fa-angle-double-down fa fa-lg"></i>
-                  </a>
+                <div class="bt_arrow2 wow bounceInUp mt-4" data-wow-delay="0.1s">
+                    <a href="javascript:void(0)" id="toggle-journey">Read more</a>
                 </div>
                 <br>
 
@@ -337,15 +400,20 @@
 
     <script>
       const btn = document.getElementById('toggle-journey');
-      const full = document.getElementById('journey-full');
+      const full = document.getElementById('journey-full');   // your hidden text block
+      const preview = document.getElementById('journey-preview'); // your preview text
+
       btn.addEventListener('click', () => {
-        if (full.style.display === 'none') {
+        if (full.style.display === 'none' || full.style.display === '') {
           full.style.display = 'block';
-          btn.innerHTML = '<i class="fa fa-angle-double-up fa fa-lg"></i>';  // switch to up arrow
+          btn.textContent = 'Read less';
         } else {
           full.style.display = 'none';
-          btn.innerHTML = '<i class="fa fa-angle-double-down fa fa-lg"></i>'; // back to down arrow
-          window.scrollTo({ top: document.getElementById('journey-preview').offsetTop, behavior: 'smooth' });
+          btn.textContent = 'Read more';
+          window.scrollTo({ 
+            top: preview.offsetTop, 
+            behavior: 'smooth' 
+          });
         }
       });
     </script>

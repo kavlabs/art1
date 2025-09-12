@@ -89,11 +89,59 @@
     .clickable-title { cursor: pointer; }
     .clickable-title:hover { text-decoration: underline; }
     figure[data-art-id] { cursor: pointer; }
+    /* ===== MOBILE-ONLY NAVBAR (<= 876px) ===== */
+    @media (max-width: 876px){
+    /* Make the scaled navbar create the top stacking context on ALL viewports */
+    .navbar-scale-wrapper {
+      position: relative;     /* <-- required so z-index works */
+      z-index: 10000;         /* sits above page content */
+      transform-origin: top center;
+      display: flex;
+      justify-content: center;
+    }
+
+    /* Ensure header/nav also live in that high layer */
+    .ct-header,
+    .ct-header .navbar {
+      position: relative;
+      z-index: 10001;
+    }
+
+    /* Your custom submenu (non-BS .dropdown-menu) should sit above nav */
+    .navbar .sub-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      min-width: 200px;
+      background: #fff;
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      display: none;
+      z-index: 10002;         /* above header/nav */
+    }
+
+    /* show submenu on hover (desktop) */
+    .navbar .nav-item:hover > .sub-menu { display: block; }
+
+    /* Guard against ancestor clipping */
+    .wrapper, .container, header, .ct-header { overflow: visible !important; }
+
+    /* If any gallery figures were given z-index by other CSS, neutralize it */
+    .exp-item, .exp-item figure, .exp-item figure img { position: relative; z-index: auto; }
+
+    /* Variants — scale everything inside */
+    .navbar-scale-wrapper.scale-05 { transform: scale(calc(1/0.5)); }
+    .navbar-scale-wrapper.scale-07 { transform: scale(calc(1/0.7)); }
+    .navbar-scale-wrapper.scale-09 { transform: scale(calc(1/0.9)); }
+    .navbar-scale-wrapper.scale-10 { transform: scale(calc(1)); }
+    .navbar { flex-wrap: nowrap; }
+    }
 </style>
 </head>
 
-<body>
+<body class="scale-10">
     <div class="wrapper">
+        <div class="navbar-scale-wrapper scale-10">
         <header class="ct-header">
             <div class="container">
                 <nav class="navbar navbar-expand-lg">
@@ -101,13 +149,14 @@
                       <a class="navbar-brand" href="index.html"><img src="images/logo3.png" alt="Art by Nasmeen"></a>
                       <a class="navbar-brand" href="index.html"><p><h2>Art by Nasmeen</h2></p></a>
                     </div>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="fa fa-bars"></i>
+                    <button class="navbar-toggler" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <i class="fa fa-bars"></i>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="nav justify-content-end">
+                        <ul class="navbar-nav ms-auto">
                             <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                            <li class="nav-item"><a href="aboutus.html" class="nav-link">About the Artist / Contact Us</a></li>
                             <li class="nav-item"><a href="#" class="nav-link">Gallery  </a>
                                 <ul class="sub-menu">
                                         <li><a href="sculpture.html">sculpture art</a></li>
@@ -116,11 +165,12 @@
                                 
                               </li>
                             <li class="nav-item"><a href="eea.html" class="nav-link">Exhibitions, Events and Activities</a></li>
+                            <li class="nav-item"><a href="aboutus.html" class="nav-link">About the Artist / Contact Us</a></li>
                         </ul>
                     </div>
                 </nav>
             </div>
-        </header>
+        </header></div>
         <div class="event-program section-space">
             <div class="container">
                 <div class="row">
@@ -270,7 +320,7 @@
                                     <div class="program_cont">
                                         <div class="wcs-class__meta">
                                             <div class="wcs-class__inner-flex">
-                                                <h3>SEA & SAND </h3>
+                                                <h3>SEA AND SAND </h3>
                                                 <div class="wcs-class__excerpt">
                                                     <p>Awed by the beauty of the Mediterranean. This painting is a picture of calmness and serenity.  </p>
                                                     <p>Made with sculpture paste on a canvas board. </p>
