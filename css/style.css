@@ -574,6 +574,17 @@ footer a {
 }
 
 .inner-banner h1 {
+    font-size: 75px;
+    position: relative;
+    letter-spacing: 7px;
+    color: #fff;
+    bottom: -29px;
+    font-weight: 600;
+    position: relative;
+    z-index: 11;
+}
+
+.inner-banner h2 {
     font-size: 101px;
     position: relative;
     letter-spacing: 10px;
