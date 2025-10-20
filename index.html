@@ -60,24 +60,45 @@
     }
 
     /* Background image with 95% opacity */
-    .hero-section::before {
+    /*.hero-section::before {
       content: "";
       position: absolute;
       inset: 0;
       background: url("images/eg.png") no-repeat center center;
       background-size: cover;
-      opacity: 0.2;                 /* make image 95% visible */
-      z-index: -2;                   /* behind everything */
-    }
-
-    /* Optional subtle dark overlay to help readability */
-    .hero-section::after {
+      opacity: 0.2;         
+      z-index: -3;                
+    }*/
+    .hero-section::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: rgba(0,0,0,0.2);   /* light overlay for text contrast */
-      z-index: -1;
+      background: 
+        linear-gradient(
+          to right,
+          rgba(81,110,82,0) 0%,
+          rgba(81,110,82,0.2) 10%,
+          rgba(81,110,82,0.6) 15%,
+          rgba(81,110,82,1) 20%,
+          rgba(81,110,82,1) 80%,
+          rgba(81,110,82,0.6) 85%,
+          rgba(81,110,82,0.2) 90%,
+          rgba(81,110,82,0) 100%
+        ),
+        url("images/eg.png") no-repeat center center;
+      background-size: cover;
+      opacity: 0.8; /* adjust to control image visibility under the fade */
+      z-index: -2;
     }
+
+    /* Optional subtle dark overlay to help readability */
+    /*.hero-section::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.2);
+      z-index: -1;
+    }*/
 
     /* Text styling */
     .hero-section p {
