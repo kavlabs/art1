@@ -172,7 +172,8 @@
                                 </ul>
                                 
                               </li>
-                            <li class="nav-item"><a href="eea.html" class="nav-link">Exhibitions, Events and Activities</a></li>
+                            <li class="nav-item"><a href="eea.html" class="nav-link">Events</a></li>
+                            <li class="nav-item"><a href="eea2.html" class="nav-link">News Publications</a></li>
                             <li class="nav-item"><a href="aboutus.html" class="nav-link">About the Artist / Contact Us</a></li>
                         </ul>
                     </div>
@@ -686,7 +687,8 @@
                     <ul>
                         <li><a href="index.html">Home</a></li>
                         <li><a href="aboutus.html">About the Artist / Contact Us</a></li>
-                        <li><a href="eea.html">Exhibitions, Events and Activities</a></li>
+                        <li><a href="eea.html">Events</a></li>
+                        <li><a href="eea2.html">News Publications</a></li>
                     </ul>
                 </div>
             </div>
@@ -831,6 +833,10 @@
 
         // Find the heading inside the text column and tag it
         const h3 = textCol.querySelector('h3');
+        if (!h3) {
+          console.warn('No <h3> found for figure:', fig);
+          return; // <-- stop here for this iteration
+        }
         if (h3) {
           h3.dataset.artId = id;
           h3.classList.add('clickable-title');
@@ -842,6 +848,7 @@
         const target = e.target.closest('figure[data-art-id], h3[data-art-id]');
         if (!target) return;
         const id = target.dataset.artId;
+        console.log(id)
         if (id) {
           window.location.href = 'art.html?id=' + encodeURIComponent(id);
         }
